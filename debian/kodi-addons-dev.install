@@ -1,0 +1,2 @@
+debian/dh-addon/dh_kodiaddon_depends usr/bin/
+usr/lib/*/kodi/cmake

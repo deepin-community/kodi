@@ -1,0 +1,2 @@
+# It is Python package dropping files in /usr/bin
+package-contains-no-arch-dependent-files

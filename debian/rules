@@ -1,4 +1,287 @@
 #!/usr/bin/make -f
 
+# Avoid custom build rule silencing
+export V=1
+
+# Include /usr/share/dpkg/pkg-info.mk to get DEB_{SOURCE,VERSION}
+include /usr/share/dpkg/pkg-info.mk
+
+# Include /usr/share/dpkg/architecture.mk to get DEB_HOST_{MULTI,}ARCH
+include /usr/share/dpkg/architecture.mk
+
+# bindnow breaks wrappers used in with libdvdread
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all,-bindnow
+
+DVDNAV_COMPONENT = libdvdnav-embedded
+DVDNAV_URL = tools/depends/target/libdvdnav/libdvdnav-embedded.tar.xz
+DVDREAD_COMPONENT = libdvdread-embedded
+DVDREAD_URL = tools/depends/target/libdvdread/libdvdread-embedded.tar.xz
+
+export DEB_CFLAGS_MAINT_STRIP  = -O2
+export DEB_CFLAGS_MAINT_APPEND  = -O3
+export DEB_CXXFLAGS_MAINT_STRIP  = -O2
+export DEB_CXXFLAGS_MAINT_APPEND  = -O3
+
+BUILD_WAYLAND := yes
+BUILD_GBM := yes
+
+NUMCPU =
+# Support parallel=<n> in DEB_BUILD_OPTIONS (see #209008)
+ifneq (,$(filter parallel=%,$(subst $(COMMA), ,$(DEB_BUILD_OPTIONS))))
+  NUMCPU := $(subst parallel=,,$(filter parallel=%,$(subst $(COMMA), ,$(DEB_BUILD_OPTIONS))))
+endif
+
+# Various environment variables to set
+export DEB_LDFLAGS_MAINT_APPEND = -latomic -lpthread
+# for embedded libdvd* and Kodi from Debian patch:
+export DEB_CPPFLAGS_MAINT_APPEND = -D_XBMC -DDEB_VERSION=\"$(DEB_VERSION)\"
+
+KODI_PLATFORMS := x11
+
+ifeq ($(BUILD_WAYLAND),yes)
+	KODI_PLATFORMS := $(KODI_PLATFORMS) wayland
+endif
+ifeq ($(BUILD_GBM),yes)
+	KODI_PLATFORMS := $(KODI_PLATFORMS) gbm
+endif
+
+# basilgello: keep these overrides to ensure CMake honors
+# the 32-bit architecture requested by 'dpkg-buildpackage'
+# (like 'i486-linux') on 64-bit machines (like 'amd64').
+ifneq (,$(filter alpha,$(DEB_HOST_ARCH)))
+EXTRA_FLAGS := $(EXTRA_FLAGS) -DWITH_ARCH=alpha
+else ifneq (,$(filter amd64,$(DEB_HOST_ARCH)))
+EXTRA_FLAGS := $(EXTRA_FLAGS) -DWITH_ARCH=x86_64-linux
+else ifneq (,$(filter arm64,$(DEB_HOST_ARCH)))
+EXTRA_FLAGS := $(EXTRA_FLAGS) -DWITH_ARCH=aarch64
+else ifneq (,$(filter armel armhf,$(DEB_HOST_ARCH)))
+EXTRA_FLAGS := $(EXTRA_FLAGS) -DWITH_ARCH=arm
+else ifneq (,$(filter i386,$(DEB_HOST_ARCH)))
+EXTRA_FLAGS := $(EXTRA_FLAGS) -DWITH_ARCH=i486-linux
+else ifneq (,$(filter m68k,$(DEB_HOST_ARCH)))
+EXTRA_FLAGS := $(EXTRA_FLAGS) -DWITH_ARCH=m68k
+else ifneq (,$(filter mipsel,$(DEB_HOST_ARCH)))
+EXTRA_FLAGS := $(EXTRA_FLAGS) -DWITH_ARCH=mips
+else ifneq (,$(filter mips64el,$(DEB_HOST_ARCH)))
+EXTRA_FLAGS := $(EXTRA_FLAGS) -DWITH_ARCH=mips64
+else ifneq (,$(filter powerpc,$(DEB_HOST_ARCH)))
+EXTRA_FLAGS := $(EXTRA_FLAGS) -DWITH_ARCH=ppc
+else ifneq (,$(filter ppc64,$(DEB_HOST_ARCH)))
+EXTRA_FLAGS := $(EXTRA_FLAGS) -DWITH_ARCH=ppc64
+else ifneq (,$(filter ppc64el,$(DEB_HOST_ARCH)))
+EXTRA_FLAGS := $(EXTRA_FLAGS) -DWITH_ARCH=ppc64
+else ifneq (,$(filter riscv64,$(DEB_HOST_ARCH)))
+EXTRA_FLAGS := $(EXTRA_FLAGS) -DWITH_ARCH=riscv64
+else ifneq (,$(filter s390x,$(DEB_HOST_ARCH)))
+EXTRA_FLAGS := $(EXTRA_FLAGS) -DWITH_ARCH=s390x
+# TODO: Workaround for #1043076 - remove when resolved
+export DEB_CFLAGS_MAINT_APPEND  = -O3 -fexcess-precision=fast
+export DEB_CXXFLAGS_MAINT_APPEND  = -O3 -fexcess-precision=fast
+else ifneq (,$(filter sh4,$(DEB_HOST_ARCH)))
+EXTRA_FLAGS := $(EXTRA_FLAGS) -DWITH_ARCH=sh4
+else ifneq (,$(filter sparc64,$(DEB_HOST_ARCH)))
+EXTRA_FLAGS := $(EXTRA_FLAGS) -DWITH_ARCH=sparc64
+endif
+
+# basilgello: If cross-compiling, tell Kodi to look for native prerequisites
+# in $(CURDIR)/native-tools, where the override_dh_autoconfigure step builds
+# them for the build architecture (the native architecture of builder machine)
+ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
+EXTRA_FLAGS := $(EXTRA_FLAGS) \
+	-DWITH_JSONSCHEMABUILDER=$(CURDIR)/native-tools/bin/JsonSchemaBuilder \
+	-DWITH_TEXTUREPACKER=$(CURDIR)/native-tools/bin/TexturePacker
+endif
+
+# Kodi configuration options
+#
+KODI_OPTS=\
+-DVERBOSE=1 \
+-DUSE_LTO=$(NUMCPU) \
+-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+-DENABLE_AIRTUNES=ON \
+-DENABLE_ALSA=ON \
+-DENABLE_AVAHI=ON \
+-DENABLE_BLURAY=ON \
+-DENABLE_CEC=ON \
+-DENABLE_DBUS=ON \
+-DENABLE_DEBUGFISSION=OFF \
+-DENABLE_DVDCSS=OFF \
+-DENABLE_EVENTCLIENTS=ON \
+-DENABLE_INTERNAL_CROSSGUID=OFF \
+-DENABLE_INTERNAL_DATE=OFF \
+-DENABLE_INTERNAL_FFMPEG=OFF \
+-DENABLE_INTERNAL_KISSFFT=OFF \
+-DENABLE_INTERNAL_LIBDVD=ON \
+-DENABLE_INTERNAL_RapidJSON=OFF \
+-DENABLE_INTERNAL_TZDATA=OFF \
+-DENABLE_MICROHTTPD=ON \
+-DENABLE_MYSQLCLIENT=ON \
+-DENABLE_NFS=ON \
+-DENABLE_OPTICAL=ON \
+-DENABLE_PULSEAUDIO=ON \
+-DENABLE_SMBCLIENT=ON \
+-DENABLE_UDEV=ON \
+-DENABLE_UPNP=ON \
+-DENABLE_VAAPI=ON \
+-DENABLE_VDPAU=ON \
+-DENABLE_XSLT=ON \
+-DLIBDVDREAD_URL=$(DVDREAD_URL) \
+-DLIBDVDNAV_URL=$(DVDNAV_URL) \
+-DENABLE_LIRCCLIENT=ON \
+-DNEON=False \
+-DCORE_PLATFORM_NAME="$(KODI_PLATFORMS)" \
+-DAPP_RENDER_SYSTEM=gl \
+$(EXTRA_FLAGS)
+
 %:
-	dh $@
+	dh $@ --buildsystem cmake --with python3
+
+override_dh_clean:
+	#‌ Clean the optional language packs originating in repo-resources-embedded
+	#‌ We rely on the fact that there are no optional resource.language.* in
+	# system/addon-manifest.xml
+	cd repo-resources-embedded && for i in resource.language.*; do \
+		if grep -q "<addon optional=\"true\">$$i</addon>" \
+			$(CURDIR)/system/addon-manifest.xml; \
+		then \
+			echo "Cleaning language pack $$i"; \
+			rm -rf $(CURDIR)/addons/$$i; \
+			sed -i "/<addon optional=\"true\">$$i</d" \
+				$(CURDIR)/system/addon-manifest.xml; \
+			sed -i "/$$i\//d" \
+				$(CURDIR)/cmake/installdata/common/addons.txt; \
+		fi; \
+	done
+	# ‌Perform the rest of cleaning
+	dh_clean \
+		addons/skin.estuary/media/from-debian-logo.png \
+		addons/webinterface.default/ \
+		debian/dh-addon/*.1 \
+		lib/gtest/ \
+		media/Fonts/arial.ttf \
+		native-tools/ \
+		tools/depends/native/JsonSchemaBuilder/native/ \
+		tools/depends/native/JsonSchemaBuilder/.installed-native \
+		tools/depends/native/TexturePacker/native/ \
+		tools/depends/native/TexturePacker/.installed-native \
+		$(DVDNAV_URL) \
+		$(DVDREAD_URL)
+
+# fall back to old location of DejaVuSans.ttf if needed
+ifneq ("$(wildcard /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf)","")
+DEJAVUSANS=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf
+else
+DEJAVUSANS=/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf
+endif
+
+media/Fonts/arial.ttf: debian/mergefonts.ff
+	# work around #948876 until fontforge is fixed by using cached result
+	fontforge -script $< \
+		/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf \
+		$(DEJAVUSANS) \
+		$@ || cp debian/extra/arial.ttf $@
+
+lib/gtest/lib/.libs/libgtest.a:
+	cp -r /usr/src/gtest/ $(CURDIR)/lib/ && mkdir -p $(CURDIR)/lib/gtest/lib/.libs
+
+addons/skin.estuary/media/from-debian-logo.png: debian/from-debian-logo.svg
+	rsvg-convert -w 250 -h 82 -o $@ $<
+
+embedded-libs:
+	#‌ Copy default webinterface addon
+	cp -r $(CURDIR)/debian/webinterface-default $(CURDIR)/addons/webinterface.default
+	#‌ Copy the optional language packs originating in repo-resources-embedded
+	cd repo-resources-embedded && for i in resource.language.*; do \
+		echo "Adding language pack $$i"; \
+		cp -r $$i $(CURDIR)/addons/$$i; \
+		sed -i "/<\/addons>/i\ \ <addon optional=\"true\">$$i<\/addon>" \
+			$(CURDIR)/system/addon-manifest.xml; \
+		echo "addons/$$i/*"‌ \
+			1>>$(CURDIR)/cmake/installdata/common/addons.txt; \
+	done
+	#‌ Prepare archives from embedded libdvd*
+	tar -cf $(DVDNAV_URL) $(DVDNAV_COMPONENT)
+	tar -cf $(DVDREAD_URL) $(DVDREAD_COMPONENT)
+
+override_dh_auto_configure: addons/skin.estuary/media/from-debian-logo.png embedded-libs lib/gtest/lib/.libs/libgtest.a media/Fonts/arial.ttf
+ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
+	# We are cross-compiling!
+	# Produce the JsonSchemaBuilder and TexturePacker
+	# prerequisites for the build architecture
+	cd tools/depends/native/JsonSchemaBuilder && \
+		make NATIVEPREFIX=$(CURDIR)/native-tools
+	cd tools/depends/native/TexturePacker && \
+		make NATIVEPREFIX=$(CURDIR)/native-tools
+endif
+	dh_auto_configure -- $(KODI_OPTS) \
+		-DLIBDVDREAD_HASH="SHA256=$(shell sha256sum $(DVDREAD_URL) | cut -d' ' -f1)" \
+		-DLIBDVDNAV_HASH="SHA256=$(shell sha256sum $(DVDNAV_URL) | cut -d' ' -f1)"
+
+override_dh_auto_build:
+	dh_auto_build
+	for file in $$(ls debian/dh-addon/dh_*); do \
+		pod2man --section=1 --utf8 $$file $$file.1; \
+	done
+
+override_dh_auto_test-arch:
+	dh_auto_build -- kodi-test
+	dh_auto_test -a
+
+# No tests for indep build.
+override_dh_auto_test-indep:
+
+override_dh_install-indep:
+	# Perform arch-independent install
+	dh_install -i -XLICENCE -XLICENSE \
+		-XLicence.txt -XLicense.txt -XLICENSE.txt \
+		-XNOTICE.txt \
+		-Xjquery-1.8.2.min.js -Xiscroll-min.js
+	# Remove kodi-repository-kodi part from kodi-data
+	rm -rf debian/kodi-data/usr/share/kodi/addons/repository.xbmc.org
+	# Remove documentation-outside-usr-share-doc but not from addons
+	rm -f debian/kodi-data/usr/share/kodi/privacy-policy.txt
+	# Install kodi-repository-kodi
+	dh_install -pkodi-repository-kodi \
+		addons/repository.xbmc.org/* usr/share/kodi/addons/repository.xbmc.org
+	# ship xbmcclient.h only in kodi-eventclients-dev
+	rm -f debian/kodi-addons-dev-common/usr/include/kodi/xbmcclient.h
+	# check if all needed headers are included
+	$(CXX) -E -c debian/headers-check.c -DBUILD_KODI_ADDON \
+	$(shell dpkg-buildflags --get CPPFLAGS) \
+	$(shell dpkg-buildflags --get CXXFLAGS) \
+	-Idebian/kodi-addons-dev-common/usr/include \
+	-o /dev/null
+
+override_dh_install-arch:
+	# Prepare kodi-eventclients-dev dummy file
+	# see debian/control for explanation of package purpose
+	touch debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/kodi/eventclients-dev
+	# Prepare kodi/system dummy file
+	# this is necessary to compensate absence of libsse4.so on non-x86
+	mkdir -p debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/kodi/system
+	touch debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/kodi/system/dummy
+	# Perform arch-specific install
+	dh_install -a -XLICENCE -XLICENSE -XLicence.txt -XLicense.txt -XLICENSE.txt -XNOTICE.txt
+	# Drop executable flag from all Python scripts except:
+	# ps3_remote.py
+	# sixpair.py
+	# sixwatch.py
+	# zeroconf.py
+	find debian/kodi-eventclients-*/ \
+		! \( -name "ps3_remote.py" -o -name "sixpair.py" -o -name "sixwatch.py" -o -name "zeroconf.py" \) \
+		-name "*.py" -exec chmod 0644 '{}' \;
+	# Remove ps3 and zeroconf.py from kodi-eventclients-python
+	rm -rf debian/kodi-eventclients-python/usr/lib/python*/*/kodi/ps3
+	rm -f debian/kodi-eventclients-python/usr/lib/python*/*/kodi/ps3_remote.py
+	rm -f debian/kodi-eventclients-python/usr/lib/python*/*/kodi/zeroconf.py
+
+# dwz fails to create multifile dwarfs with '-gstrip-dwarf'
+override_dh_dwz:
+
+override_dh_shlibdeps:
+	dh_shlibdeps -a \
+		-l$(CURDIR)/debian/kodi-bin/usr/lib/*/kodi/system/players/dvdplayer
+
+override_dh_gencontrol:
+	debian/dh-addon/dh_kodiaddon_depends
+	dh_gencontrol

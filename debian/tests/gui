@@ -1,0 +1,23 @@
+#!/bin/sh
+# autopkgtest check: Run kodi GUI to see basic functionality working
+# Author: Balint Reczey <balint.reczey@canonical.com>
+# Modified by Vasyl Gello <vasek.gello@gmail.com>
+
+set -e
+
+export HOME=$AUTOPKGTEST_TMP
+KODI_LOG="$HOME/.kodi/temp/kodi.log"
+
+trap 'cat $KODI_LOG' EXIT
+
+[ ! -e $KODI_LOG ] || (echo "ERROR: $KODI_LOG" already exists! ; exit 1)
+
+xvfb-run -e /dev/stdout -s '-screen 0 1920x1080x24 +extension GLX' kodi &
+while test ! -e $KODI_LOG; do
+    sleep 1
+done
+tail -f -n +0 $KODI_LOG | grep -m 1 'Listening on port 9777'
+kodi-send --host=localhost --port=9777 --action="Quit"
+wait
+
+echo "run: OK"

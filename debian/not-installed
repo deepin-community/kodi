@@ -1,0 +1,7 @@
+# README and version.txt are superseded by manpages
+usr/share/doc/kodi/LICENSE.md
+usr/share/doc/kodi/README.Linux.md
+usr/share/doc/kodi/version.txt
+
+# JsonSchemaBuilder is not intended for end-user
+usr/bin/JsonSchemaBuilder
