@@ -1,0 +1,5 @@
+# /usr/bin/kodi is a script referencing /usr/lib/$(DEB_ARCH)/kodi
+package-contains-no-arch-dependent-files
+
+# Kodi uses metainfo file to store the info as it is translatable
+desktop-entry-lacks-keywords-entry

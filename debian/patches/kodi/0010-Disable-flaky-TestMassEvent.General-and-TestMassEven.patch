@@ -1,0 +1,31 @@
+From: Balint Reczey <balint.reczey@canonical.com>
+Date: Sat, 7 Mar 2020 20:31:55 +0100
+Subject: Disable flaky TestMassEvent.General and TestMassEvent.Polling tests
+Forwarded: not-needed
+
+---
+ xbmc/threads/test/TestEvent.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/xbmc/threads/test/TestEvent.cpp b/xbmc/threads/test/TestEvent.cpp
+index 1e3bb93..3293ca8 100644
+--- a/xbmc/threads/test/TestEvent.cpp
++++ b/xbmc/threads/test/TestEvent.cpp
+@@ -593,7 +593,7 @@ template <class W> void RunMassEventTest(std::vector<std::shared_ptr<W>>& m, boo
+ }
+ 
+ 
+-TEST(TestMassEvent, General)
++TEST(DISABLED_TestMassEvent, General)
+ {
+   g_event = new CEvent();
+ 
+@@ -605,7 +605,7 @@ TEST(TestMassEvent, General)
+   delete g_event;
+ }
+ 
+-TEST(TestMassEvent, Polling)
++TEST(DISABLED_TestMassEvent, Polling)
+ {
+   g_event = new CEvent(true); // polling needs to avoid the auto-reset
+ 

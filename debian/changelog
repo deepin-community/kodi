@@ -1,5 +1,1223 @@
-template-repository (1.0-1) unstable; urgency=medium
+kodi (2:20.2+dfsg-4) unstable; urgency=medium
 
-  * Initial release
+  * Add patch to fix crash with ffmpeg6 
+  * Fix FTBFS on s390x (Closes: #1043128)
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Vasyl Gello <vasek.gello@gmail.com>  Sun, 06 Aug 2023 08:31:29 +0000
+
+kodi (2:20.2+dfsg-3) unstable; urgency=medium
+
+  * Revert language pack patches for now to land
+    in unstable
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Fri, 04 Aug 2023 23:26:08 +0000
+
+kodi (2:20.2+dfsg-2) unstable; urgency=medium
+
+  * d/gbp.conf: Drop unnecessary upstream-branch
+  * debian: switch to DEP-14 git branch naming scheme
+  * Prepare for language pack separation
+  * Separate language packs (Closes: #1042996)
+  * Fix build against FFmpeg 6.0 (Closes: #1041400)
+  * Add patch for CD/DVD playback without mount support
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Fri, 04 Aug 2023 19:25:39 +0000
+
+kodi (2:20.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream version 20.2+dfsg
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Mon, 03 Jul 2023 08:50:21 +0000
+
+kodi (2:20.1+dfsg-1) unstable; urgency=medium
+
+  * New upstream version 20.1+dfsg
+  * Refresh cdatetime-std-chrono patchset
+  * Drop patches merged upstream
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Sun, 12 Mar 2023 09:31:18 +0000
+
+kodi (2:20.0+dfsg-2) unstable; urgency=high
+
+  * s/gbp.conf: Switch to versioned upstream branches
+  * Fix CVE-2023-23082 (Closes: #1031048)
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Mon, 13 Feb 2023 10:43:13 +0000
+
+kodi (2:20.0+dfsg-1) unstable; urgency=medium
+
+  * New upstream version 20.0+dfsg
+  * d/rules: Add alpha and arm64 overrides
+  * Refresh ports patch
+  * Refresh libdvd patch
+  * Refresh cdatetime-std-chrono patchset
+  * Drop patches merged upstream
+  * Refresh ffmpeg5 patch
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Sat, 21 Jan 2023 18:03:44 +0000
+
+kodi (2:20.0~rc2+dfsg-2) unstable; urgency=medium
+
+  * d/rules: Declare ports architectures
+  * Add patch to build on ports architectures
+  * Refresh ffmpeg5 patch
+  * Patch DoS vulnerability awaiting for CVE
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Thu, 05 Jan 2023 07:24:56 +0000
+
+kodi (2:20.0~rc2+dfsg-1) unstable; urgency=medium
+
+  * New upstream version 20.0~rc2+dfsg
+  * d/control: Add B+R on kodi-addons-dev
+  * d/control: Bump standards version (no changes required)
+  * d/copyright: Bump copyright years
+  * Drop patches merged upstream
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Mon, 19 Dec 2022 19:06:13 +0000
+
+kodi (2:20.0~rc1+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version 20.0~rc1+dfsg1
+  * Drop obsolete build dependency libgl1-mesa-dev
+  * Add Breaks/Replaces to kodi-addons-dev fixing piuparts failure
+    in stable2sid
+  * Add copyright entries for embedded libdvd*
+  * Drop copyright entry for libdate-tz-embedded and several
+    other extinct paths
+  * Fix the missing manpage after move of /usr/bin/dh_kodiaddon_depends
+  * Add patches for bashisms in kodi.sh
+  * Add descriptions to workaround patches
+  * Use +dfsg instead of +dfsg1 in watchfile
+  * Add workaround patches addressing removal of EGL Chromium headerfile
+    in Mesa 22.3.0 anda regression of playlist detection in Kodi 20 RC1
+  * Refresh cdatetime patchset fixing broken test spotted during
+    reproducibility test
+  * Fix placement of zeroconf wrapper
+  * Drop old NEWS entry about systemd integration
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Tue, 13 Dec 2022 15:04:25 +0000
+
+kodi (2:20.0~beta1+dfsg1-2) unstable; urgency=medium
+
+  * d/rules: Add installable dummy file to kodi/system
+  * Add workaround to fix crossbuilds
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Wed, 09 Nov 2022 21:16:07 +0000
+
+kodi (2:20.0~beta1+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version 20.0~beta1+dfsg1
+  * Refresh cdatetime patchset
+  * Refresh kodi and libdvdread patchsets
+  * Refresh ffmpeg5 patchset
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Tue, 08 Nov 2022 19:44:52 +0000
+
+kodi (2:20.0~alpha3+git20221015.976c5c8+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version 20.0~alpha3+git20221015.976c5c8+dfsg1
+  * Ship firewalld files (Closes: #1015956)
+  * Bump standards version
+  * Fix lintian warnings
+  * Use system howardhinnant-date
+  * d/watch: Switch to git tags instead of webpage scraping
+  * d/watch: Temporary switch libdvd* to master branch
+  * Refresh kodi patchset
+  * Drop libdvdnav patchset
+  * Drop workaround patches merged upstream
+  * Refresh cdatetime-std-chrono patchset
+  * workarounds: Add libdvd* callback support (Closes: #1020452)
+  * workarounds: refresh ffmpeg5 patch (Closes: #1016925)
+  * d/rules: Follow on upstream buildsystem changes
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Sat, 15 Oct 2022 16:54:13 +0000
+
+kodi (2:20.0~alpha2+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version 20.0~alpha2+dfsg1
+  * d/copyright fixes:
+    + Keep COMPONENT-VERSION files in tools/depends/target
+    + Remove useless versioncheck addon (Closes: #1015163)
+    + Bump copyright years
+  * Remove obsoleted patches and update the rest:
+    + Add patch fixing color conversion test (merged)
+    + Add patch for overriding local tarball checksum (merged)
+    + Add patch for ffmpeg 5 support (not merged) (Closes: #1004612)
+    + Add patch for proper fix of EDL rounding (merged)
+    + Add patch for building against libfmt 9.0.0 (merged) (Closes: #1014542)
+  * d/rules fixes:
+    + Don't rely on versionfile parsing
+  * + Supply SHA256 hashes for libdvd*
+  * Upload to unstable.
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Wed, 03 Aug 2022 14:24:22 +0000
+
+kodi (2:20.0~alpha1+dfsg1-2) experimental; urgency=medium
+
+  * Fix failing tests and restore timezone picker (Closes:‌ #1011241)
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Thu, 19 May 2022 15:08:49 +0000
+
+kodi (2:20.0~alpha1+dfsg1-1) experimental; urgency=medium
+
+  * New upstream version 20.0~alpha1+dfsg1
+  * Leave only language packs in repo-resources-embedded
+  * Branch out experimental
+  * Restrict watchfile to next Debian stable codename
+  * Add pipewire to build-dependencies
+  * Refresh Kodi patches
+  * Add workaround patches
+  * Refresh cdatetime-std-chrono patches
+  * Refresh headers-check.c
+  * Use system RapidJSON
+  * Bump libdate-tz C++ standard to 17 and enable StringView back
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Mon, 16 May 2022 06:45:07 +0000
+
+kodi (2:19.4+dfsg2-1) unstable; urgency=medium
+
+  * New upstream version 19.4+dfsg2
+    + Ship language packs for offline use (Closes: #1009278)
+    + Add copyright entry for language pack tarball
+  * Build libdate-tz as external build-dependency of Kodi.
+  * d/rules: Annotate actions and replace direct source patching
+    within rulefile with proper compiler definition
+  * d/rules:‌ Fix improper cleanup of generated embedded tarballs
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Fri, 29 Apr 2022 07:10:17 +0000
+
+kodi (2:19.4+dfsg1-2) unstable; urgency=medium
+
+  * Upload to unstable
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Mon, 09 Apr 2022 12:51:13 +0000
+
+kodi (2:19.4+dfsg1-1) experimental; urgency=medium
+
+  * New upstream version 19.4+dfsg1
+  * Drop system/certs and .github from tarball
+  * Refresh patches
+  * Reorder package structure to allow installation on
+    foreign architectures (Closes: #996627)
+  * Move TexturePacker to a separate binary package
+  * Fix Lintian warnings.
+  * Build native prerequisites before configure if cross-building
+  * Version the build-dependency on gtest to >= 1.10.0~
+  * d/watch: Switch libdate-tz to tags
+  * Put KodiConfig.cmake in arch-dep place (Closes: #999482)
+  * Add patches for cross build support
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Mon, 21 Mar 2022 17:48:21 +0000
+
+kodi (2:19.3+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version 19.3+dfsg1
+  * Refresh patches
+  * Add proper WITH_ARCH for amd64, i386 and riscv64
+  * Disable DebugFission by CMake configuration option instead of patch
+  * Use the system kissft
+  * kodi-bin: Remove unused lintian override
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Sun, 24 Oct 2021 14:45:29 +0000
+
+kodi (2:19.2+dfsg1-2) unstable; urgency=medium
+
+  * Fix AppStream warning with metainfo file
+  * Make build reproducible
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Wed, 13 Oct 2021 22:12:35 +0000
+
+kodi (2:19.2+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version 19.2+dfsg1
+  * Restrict watchfile to current Debian stable codename
+  * Bump standard version
+  * Refresh patches
+  * Install package metainfo
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Wed, 06 Oct 2021 10:59:56 +0000
+
+kodi (2:19.1+dfsg2-2) unstable; urgency=medium
+
+  * Add runtime locale test and fallback (Closes: #989814)
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Thu, 24 Jun 2021 20:44:30 +0000
+
+kodi (2:19.1+dfsg2-1) unstable; urgency=medium
+
+  * New upstream version 19.1+dfsg2
+  * Merge 'bullseye' branch into master and revert patches
+    related to newer libdvdread and branch isolation.
+  * Drop the patch downgrading ffmpeg to fit buster-backports.
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Mon, 07 Jun 2021 16:42:08 +0200
+
+kodi (2:19.0+dfsg1-2) unstable; urgency=medium
+
+  * Add missing font dependency (Closes: #985497)
+  * Fix github ref
+  * Branch out bullseye
+  * Refresh cdatetime-std-chrono patch (Closes: #984682)
+  * libdate-tz: Fix crash for early local times and USE_OS_TZDB
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Sun, 30 May 2021 04:57:39 +0000
+
+kodi (2:19.1+dfsg1-1~exp0) experimental; urgency=medium
+
+  * New upstream version 19.1+dfsg1
+  * Add missing font dependency (Closes: #985497)
+  * Fix links to Github releases in watchfile
+  * Refresh patches
+  * Prepare for official backport
+  * Refresh cdatetime-std-chrono patch (Closes: #984682)
+  * libdate-tz: Fix crash for early local times and USE_OS_TZDB
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Sat, 15 May 2021 21:15:26 +0000
+
+kodi (2:19.0+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version 19.0+dfsg1
+  * Declare proper Debian release splitting kodi-addons-dev (Closes: #980846)
+  * Detect and honor big-endian architectures
+  * Refresh cdatetime-std-chrono patch
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Fri, 19 Feb 2021 00:02:45 +0000
+
+kodi (2:19.0~rc1+git20210119.8c761c4+dfsg1-2) experimental; urgency=medium
+
+  * Team upload.
+  * Re-instate the kodi-addons-dev-common package split.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Wed, 20 Jan 2021 01:56:06 +0100
+
+kodi (2:19.0~rc1+git20210119.8c761c4+dfsg1-1) unstable; urgency=medium
+
+  [ Vasyl Gello ]
+  * New upstream version 19.0~rc1+dfsg1 and 19.0~rc1+git20210119.8c761c4+dfsg1.
+    + Fix possible crash on shutdown. (Closes: #979367)
+    + New upstream snapshot fixes non-DFSG free JPEG image
+      which led to FTP master rejection
+  * d/watch: mangle capital letter abbrevs too
+  * Delete patches merged upstream
+  * Refresh cdatateime-std-chrono patch
+  * copyright: Reflect skin.estuary picture replacement
+
+  [ Mattia Rizzolo ]
+  * Temporary revert the kodi-addons-dev-common split to avoid NEW fo
+    this upload (the previous version was rejected from NEW).
+  * Upload to unstable.
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Tue, 19 Jan 2021 20:02:25 +0000
+
+kodi (2:19.0~beta2+dfsg1-6) experimental; urgency=medium
+
+  [ Mattia Rizzolo ]
+  * d/control: define dh-sequence-kodiaddon as a versioned Provides
+
+  [ Vasyl Gello ]
+  * Check the existence of kodi include dir's full path
+    in dh_kodiaddon_depends.
+  * Refresh cdatetime-std-chrono patch. (Closes: #980038)
+  * Introduce a kodi-addons-dev-common package to hold all the arch-indep
+    files.
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Tue, 12 Jan 2021 02:57:10 +0000
+
+kodi (2:19.0~beta2+dfsg1-5) unstable; urgency=medium
+
+  * Team upload.
+  * Fix arch:all build after turning kodi-addons-dev arch:any.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Sun, 10 Jan 2021 20:46:04 +0100
+
+kodi (2:19.0~beta2+dfsg1-4) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Vasyl Gello ]
+  * d/watch: Declare bare git snapshot naming scheme since v20.
+
+  [ Mattia Rizzolo ]
+  * Mark kodi-addons-dev as Arch:any.
+    This is to prevent addons from building in architectures where Kodi
+    is not available.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Sun, 10 Jan 2021 15:57:30 +0100
+
+kodi (2:19.0~beta2+dfsg1-3) unstable; urgency=medium
+
+  * d/upstream/metadata: Add Bug-Submit URL
+  * Drop libenca-dev build dependency
+  * dh_kodiaddon_depends: Provide a sliding window
+    for ABI bumps to avoid unnecessary addon rebuild
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Sun, 03 Jan 2021 08:45:17 +0000
+
+kodi (2:19.0~beta2+dfsg1-2) unstable; urgency=medium
+
+  [ Vasyl Gello ]
+  * Upload to unstable (Closes: #926922)
+  * d/watch: Simplify dversionmangle
+  * Update Vcs-Git/Vcs-Browser for the move to 'kodi-media-center' subgroup
+  * Restore libfreetype6-dev alternative build-dep for buster.
+
+  [ Tobias Frost ]
+  * Add CVE-ids to past changelog entries when they have been fixed,
+    as per security team policy.
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Tue, 22 Dec 2020 10:01:37 +0000
+
+kodi (2:19.0~beta2+dfsg1-1) experimental; urgency=medium
+
+  * New upstream version 19.0~beta2+dfsg1
+    + Fix kodi-ps3remote crash. (Closes: #962929)
+  * Build a new kodi-eventclients-zeroconf package with the zeroconf scripts
+  * Add breaks and replaces to kodi-eventclients-ps3
+  * Backport a patch from Kodi 20 to replace CDateTime with cdate-std-chrono.
+    Fixes test failures on multiple architectures.
+    + Add libdate-tz as component tarball
+  * Update d/copyright
+  * Use the system-wide tzdata.
+  * Drop clang-format from build-deps, not actually needed during the build
+  * Mark kodi-addons-dev as indep
+  * Fix arch-indepedent-only build (Closes: #976303)
+  * Bump Standards-Version to 4.5.1 (no changes required)
+  * Fix lintian warnings
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Sat, 19 Dec 2020 04:55:34 +0000
+
+kodi (2:19.0~alpha3+dfsg1-1) experimental; urgency=medium
+
+  [ Vasyl Gello ]
+  * New upstream version 19.0~alpha3+dfsg1
+    + This version fully builds with Python 3. (Closes: 936805)
+  * Refresh patches
+  * Revert "temporary disable tests parallelism", in 19.0 tests run fine
+  * Bump the required ffmepg version
+  * Don't use clang-format on x32
+  * Drop the build-dep on lib-p8-platform
+  * Update the watchfile
+  * Don't run dwz during the build as it fails on us
+  * Add several Multi-Arch fields, from the M-A hinter
+  * Fix several lintian warnings
+  * Add default webinterface as debian include (this is temporary until the
+    packaging of the new interface is completed)
+  * Retrieve embedded libdvdnav and libdvdread from upstream
+  * debian/header-check.c: Add new and delete removed headers
+  * Refresh copyright information
+  * Provide 'dh-sequence-kodiaddon' virtual package
+  * Drop kodi-x11, kodi-wayland and kodi-gbm packages, now the same binary
+    can handle all window systems
+
+  [ Adrian Bunk ]
+  * Rename SSE patch file (Closes: #961856)
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Tue, 17 Nov 2020 13:04:40 +0100
+
+kodi (2:18.8+dfsg1-2) unstable; urgency=medium
+
+  * temporary disable tests parallelism (Closes: #968339)
+  * add myself to Uploaders
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Thu, 03 Sep 2020 01:48:09 +0300
+
+kodi (2:18.8+dfsg1-1) unstable; urgency=medium
+
+  [ Vasyl Gello ]
+  * Team upload
+  * fix circular dependency hell (Closes: #963865)
+  * Depend on libudfread & shairplay
+  * remove unnecessary dlopen-ed shlibdeps from kodi-bin
+  * remove dummy remnant
+
+  [ Jonas Smedegaard ]
+  * Remove myself from Uploaders
+
+  [ Vasyl Gello ]
+  * drop unnecessary cpluff component
+  * New upstream version 18.8+dfsg1 (Closes: #964591)
+  * Refresh patches
+
+  [ Adrian Bunk ]
+  * Don't enable SSE in i386 builds (Closes: #961856)
+
+  [ Balint Reczey ]
+  * debian/README.source: Clarify that dvdread and dvdnav are patched for Kodi
+  * debian/gbp.conf: Set components
+  * debian/README.source: Gbp now exports components properly
+  * New upstream version 18.7.1+dfsg1
+
+ -- Vasyl Gello <vasek.gello@gmail.com>  Mon, 03 Aug 2020 02:20:44 +0000
+
+kodi (2:18.7+dfsg1-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream version 18.7
+  * Refresh patches
+  * Update additional tarballs to libdvdnav 6.1.0 and libdvdread 6.1.1
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Tue, 26 May 2020 16:14:53 +0200
+
+kodi (2:18.6+dfsg1-2) unstable; urgency=medium
+
+  * Team upload
+  * Drop pycryptodome support with Python 2
+  * debian/control: Revert kodi-data to depend on python-pil instead of python3-pil.
+    Kodi runs addons with Python 2 and many addons would break without PIL.
+  * Run kodi-ps3remote with Python 3
+  * Apply suggestion to debian/rules
+  * debian/rules: Ship debug symbols for all kodi binaries and drop -dbg migration
+    (Closes: #955134)
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Fri, 03 Apr 2020 13:48:30 +0200
+
+kodi (2:18.6+dfsg1-1) unstable; urgency=medium
+
+  * Upload to unstable
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Sat, 21 Mar 2020 16:39:01 +0100
+
+kodi (2:18.6+dfsg1-1~exp1) experimental; urgency=medium
+
+  * test: Disable flaky TestMassEvent.General test, too
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Thu, 19 Mar 2020 21:41:10 +0100
+
+kodi (2:18.6+dfsg1-1~exp0) experimental; urgency=medium
+
+  * debian/rules: Set -DWITH_ARCH=... and -DNEON=False explicitly for armel,
+    armhf, ppc64el and s390x. Those Debian architectures are not detected
+    properly by upstream CMake scripts.
+  * Build-depend on python2-dev
+  * Reposition "from debian" on the main screen to adjust to the changed new
+    skin
+  * Don't strip service.xbmc.versioncheck addon from upstream tarball
+  * New upstream version 18.6
+  * Ship versioncheck addon disabled
+  * Disable long-time failing test and fix others instead of ignoring all test
+    results
+  * Drop obsolete patches
+  * Drop 03-privacy.patch and add TODO item about resurrecting it properly
+  * Refresh patches
+  * Run kodi-send with Python 3
+  * test: Disable flaky TestMassEvent.Polling test
+  * Fix ppc64el build
+  * Fix arch detection
+  * test: Skip checking errno against ENOEN to not FTBFS on armhf
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Wed, 18 Mar 2020 12:09:23 +0100
+
+kodi (2:18.5+dfsg1-1~exp0) experimental; urgency=medium
+
+  [ Balint Reczey ]
+  * Team upload
+  * debian/tests/gui: Wait for kodi to start, not just a fixed 5 seconds
+  * Refresh patches
+  * Update extra libdvdnav and libdvdread original tarballs
+  * debian/copyright_hints: Update hints with new files
+  * debian/control: Tidy up using cme fix
+  * debian/gitlab-ci.yml: Add Salsa CI configuration
+  * Refresh build dependencies based on upstream's packaging
+  * Ship separate packages for X11, Wayland and GBM
+  * debian/rules:
+    - Rewrite to use cmake and build separate binaries.
+      Thanks to Wolfgang Schupp
+    - Extend override_dh_clean
+    - Pass -lphtread to linker by default
+    - Refactor building Debianized artifacts
+    - Run tests for each build dir
+    - Clean up separate build directories
+    - clean media/Fonts/arial.ttf, too
+    - Call dh with python2
+    - Drop obsolete --parallel dh argument
+    - Adjust to new component names
+  * debian/copyright: Fix open issues and Lintian complaints
+  * Let upstream's build system build the embedded libdvdnav and libread
+    libraries
+  * Install TexturePacker to /usr/bin/
+  * Ignore failing tests for now
+  * Update which files are shipped by which package
+  * Switch hashing implementation from OpenSSL to Libgcrypt
+  * Build without OpenSSL
+  * Depend on unhinted Roboto font (Closes: #922950)
+  * Fix FTBFS of kodi-test by not #include-ing excluded Windows-only header
+  * Fix dh_kodiaddon_depends to get API versions the new way
+  * Refresh file list shipped by kodi-addons-dev
+  * Remove myself from Uploaders
+  * Work around FTBFS caused by fontforge SEGFAULT
+  * New upstream version 18.5+dfsg1 (CVE-2017-5982)
+  * debian/gbp.conf: Drop postexport hook.
+    It is obsoleted by storing all components in git.
+  * Stop marking kodi-bin Multiarch: same since it now ships TexturePacker
+  * Stop marking kodi-gbm, kodi-x11 and kodi-wayland Multiarch: same.
+    They depend on kodi-bin which is not Multiarch: same either.
+  * Build kodi-wayland, too
+
+  [ Rechi ]
+  * debian/copyright: update Files-Excluded
+    - libUPnP was updated
+    - UnrarXLib was split into an addon
+    - Visual Studio files were removed
+    - windows platform specific code location changed
+  * drop unused Build-depends
+  * add new Build-depends
+  * debian/rules: remove unused DEB vars
+  * debian/rules: remove non existent cmake options
+    - egl is a required dependency on linux so there is no ENABLE_EGL switch
+    - x11 isn't an optional dependency for gbm so there is no ENABLE_X11 switch
+    - vdpau is only an optional dependency for x11, so ENABLE_VDPAU switch
+      exists only for x11
+  * debian/rules: update dlopened libs
+    libass, libbluray, libcec, libcurl and libnfs are no longer dlopend
+  * fix libmicrohttpd linking
+  * debian/rules: install kodi-x11 as last package
+    last installed package defines the fallback windowing in bin/kodi
+  * fix depends syntax
+  * fix test target build system dependency
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Fri, 24 Jan 2020 08:20:58 +0100
+
+kodi (2:17.6+dfsg1-4) unstable; urgency=medium
+
+  * debian/tests/gui: Print xvfb-run error to stdout
+  * debian/tests/gui: Fix test by starting 24bit screen and waiting for
+    kodi's start
+  * Drop transitional packages
+  * Fix FTBFS when _G_va_list is not defined, like on Ubuntu 19.04
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Tue, 20 Nov 2018 12:21:00 +0100
+
+kodi (2:17.6+dfsg1-3) unstable; urgency=medium
+
+  [ Balint Reczey ]
+  * debian/NEWS: Fix language to keep lintian happy
+  * Add simple autopkgtest
+
+  [ Gianfranco Costamagna ]
+  * Upstream fixes for new ffmpeg:
+    debian/patches/19f28e88a5dfed82e9844f69210f7c045f18ca8e.patch
+    debian/patches/c7e2acc1b2ee781af6e14d80da0edd0aa23bdf03.patch
+    (Closes: #888383, #912994)
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Fri, 16 Nov 2018 01:42:36 +0100
+
+kodi (2:17.6+dfsg1-2) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/copyright: Use https protocol in Format field
+  * d/control: Set Vcs-* to salsa.debian.org
+
+  [ Rechi ]
+  * Drop build dependencies on libboost-*
+    Boost isn't required since v17.
+
+  [ Felipe Sateler ]
+  * Change maintainer address to debian-multimedia@lists.debian.org
+
+  [ Balint Reczey ]
+  * Ship only Kodi desktop session without the xbmc.desktop duplicate link
+  * Stop build-depending on versioned GCC, this workaround is not needed
+    anymore (Closes: #892399)
+    Thanks to Adrian Bunk who also proposed a patch and a delayed NMU.
+  * Stop shipping kodi.service
+    Please use a lightweight display manager set up to autologin instead.
+  * Add d/source.lintian-overrides to d/source/lintian-overrides
+    to keep lintian happy
+
+  [ Rolf Leggewie ]
+  * demote hard font dependencies from Depends to Recommends (LP: #1685918)
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Sat, 28 Apr 2018 20:50:46 +0200
+
+kodi (2:17.6+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version 17.6 (with accumulated changes from 17.4 and 17.5):
+    - https://kodi.tv/article/kodi-v174-final-just-bunch-fixes
+    - https://kodi.tv/article/kodi-v175-final-another-bunch-fixes
+    - https://kodi.tv/article/kodi-v176-final-very-last
+  * Refresh patches
+  * Depend and build-depend on python-pil instead of python-imaging
+    (Closes: #866437)
+  * Apply workaround for scratchy sound with FFmpeg 3.4.
+    Thanks to James Cowgill for triaging and Stefan Hachmann for the patch
+    (Closes: #881536)
+  * Fix starting kodi on arm64 (Closes: #876876)
+  * Change URLs to use HTTPS in README.Debian and drop feed URL from
+    description (Closes: #860484)
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Tue, 26 Dec 2017 01:06:49 +0100
+
+kodi (2:17.3+dfsg1-5) unstable; urgency=medium
+
+  * Build-depend on fontforge-nox (not fontforge.
+  * Use rsvg-convert to generate branding logo.
+    Build-depend on (not inkscape).
+  * Fix remove repository feed from kodi-data.
+    Tighten kodi-repository-kodi breaks+replaces on kodi-data.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Wed, 11 Oct 2017 02:37:25 +0200
+
+kodi (2:17.3+dfsg1-4) unstable; urgency=medium
+
+  * Update package relations:
+    + Fix have kodi-repository-kodi conflict against and replace older
+      kodi/kodi-data/xbmc.
+      Fixes bug#877960. Thanks to Andreas Beckmann.
+    + Fix have kodi-repository-kodi conflict against (not break) virtual
+      kodi-repository.
+    + Fix have package kodi-repository-kodi depend on ${misc:Depends}.
+    + Stop build-depend on dh-autoreconf autotools-dev: Handled by
+      debhelper.
+  * Rewrite copyright info, with major coverage improvements.
+  * Add maintainer script copyright-check to source.
+  * Update git-buildpackage config:
+    + Add usage comment.
+    + Filter any .git* file.
+  * Override lintian regarding license in License-Reference field.
+    See bug#786450.
+  * Override lintian regarding obsolete-url-in-packaging: License grant
+    must be included verbatim.
+
+ -- Jonas Smedegaard <dr@jones.dk>  Tue, 10 Oct 2017 22:46:23 +0200
+
+kodi (2:17.3+dfsg1-3) unstable; urgency=medium
+
+  * Fix set core configure options to all instances.
+  * Set configure options --disable-maintainer-mode
+    --disable-silent-rules (unused now but might be added in future).
+  * Fix avoid custom build rule silencing.
+  * Fix FTBFS: Build-depend on and build with gcc-6 and g++-6 (until
+    bug#841556 is fixed).
+    Closes: Bug#853476. Thanks to Matthias Klose and Bálint Réczey.
+  * Modernize Vcs-* fields:
+    + Use https (not git or http) protocol.
+    + Use git (not gitweb) in path.
+  * Use https in Homepage URL.
+  * Add myself as uploader.
+  * Add patch 18 to support omitting addon repository feed.
+  * Ship repository feed in separate package kodi-repository-kodi.
+    Closes: Bug#877656 (or arguably only lowers severity of it, but
+    since we cannot track that versioned better to close and track the
+    lowered severity separately).
+
+ -- Jonas Smedegaard <dr@jones.dk>  Wed, 04 Oct 2017 03:53:10 +0200
+
+kodi (2:17.3+dfsg1-2) unstable; urgency=medium
+
+  * Upload to unstable
+  * Stop shipping kodi.service as an example since it is now shipped
+    as a regular .service file
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Thu, 29 Jun 2017 05:15:29 +0200
+
+kodi (2:17.3+dfsg1-1) experimental; urgency=medium
+
+  * New upstream version 17.3
+    See: https://kodi.tv/article/kodi-v173-minor-bug-fix-and-security-release
+  * Refresh patches
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Fri, 26 May 2017 18:44:04 +0200
+
+kodi (2:17.1+dfsg1-3) unstable; urgency=medium
+
+  * Fix zip file directory traversal vulnerability (CVE-2017-8314)
+    (Closes: #863230)
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Sat, 27 May 2017 00:50:34 +0200
+
+kodi (2:17.1+dfsg1-2) unstable; urgency=medium
+
+  * Upload to unstable
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Thu, 13 Apr 2017 23:49:12 +0200
+
+kodi (2:17.1+dfsg1-1) experimental; urgency=medium
+
+  * Depend on fonts-noto-mono package which contains NotoMono-Regular.ttf
+    (Closes: #856668)
+  * Fix FTBFS on alpha by not using Intel assempler code (Closes: #856815)
+  * Imported Upstream version 17.1+dfsg1
+    See: https://kodi.tv/kodi-v17-1-krypton
+  * Update my Uploader email address to my Ubuntu one
+  * Fix extract-components target in d/rules
+
+ -- Balint Reczey <rbalint@ubuntu.com>  Sun, 02 Apr 2017 11:01:21 +0200
+
+kodi (2:17.1~rc1+dfsg1-1) experimental; urgency=medium
+
+  * Imported Upstream version 17.1~rc1+dfsg1
+  * Refresh patches
+
+ -- Balint Reczey <balint@balintreczey.hu>  Tue, 28 Feb 2017 02:21:54 +0100
+
+kodi (2:17.0+dfsg1-3) unstable; urgency=medium
+
+  * Ship disabled systemd service file (Closes: #854985, #801886)
+  * Use systemd service file recommended on upstream wiki
+
+ -- Balint Reczey <balint@balintreczey.hu>  Wed, 22 Feb 2017 01:28:43 +0100
+
+kodi (2:17.0+dfsg1-2) unstable; urgency=medium
+
+  * Apply patches to additional tarballs using quilt series file
+    (Closes: #854463)
+
+ -- Balint Reczey <balint@balintreczey.hu>  Thu, 09 Feb 2017 10:25:18 +0100
+
+kodi (2:17.0+dfsg1-1) experimental; urgency=medium
+
+  * Imported Upstream version 17.0+dfsg1
+    See: https://kodi.tv/kodi17/
+
+ -- Balint Reczey <balint@balintreczey.hu>  Mon, 06 Feb 2017 19:33:08 +0100
+
+kodi (2:17.0~rc4+dfsg1-1) experimental; urgency=medium
+
+  * Imported Upstream version 17.0~rc4+dfsg1
+    See: https://kodi.tv/kodi-v17-0-krypton-release-candidate-4/
+  * Refresh patches
+  * Remove spaces around '=' in service file.
+    Also convert service file to use Unix line ending
+
+ -- Balint Reczey <balint@balintreczey.hu>  Sun, 05 Feb 2017 01:27:27 +0100
+
+kodi (2:17.0~rc3+dfsg1-2) unstable; urgency=medium
+
+  * Bump debhelper compat level to 10.
+    Remove --parallel and --with autoreconf since those are now defaults
+  * Build-depend on libcec-dev >= 4~ (Closes: #852216)
+  * Fix make clean in debian/rules
+  * Use real dlopen() for opening libdvdcss (Closes: #784578)
+
+ -- Balint Reczey <balint@balintreczey.hu>  Wed, 25 Jan 2017 21:23:22 +0100
+
+kodi (2:17.0~rc3+dfsg1-1) unstable; urgency=medium
+
+  * Make default lirc device match lirc package's default (Closes: #850467)
+  * Stop passing ./configure flags which are not supported anymore
+  * Update fonts and font dependencies
+  * Imported Upstream version 17.0~rc3+dfsg1
+    See: https://kodi.tv/kodi-v17-0-krypton-release-candidate-3/
+  * Refresh patches
+  * Fix FTBFS due to missing AEDefines_override.h
+
+ -- Balint Reczey <balint@balintreczey.hu>  Mon, 16 Jan 2017 21:41:03 +0100
+
+kodi (2:17.0~rc2+dfsg1-1) unstable; urgency=medium
+
+  * Imported Upstream version 17.0~beta7+dfsg1
+    See: https://kodi.tv/kodi-v17-krypton-the-last-beta-7/
+  * Refresh patches
+  * Use NotoSans-Regular font from fonts-noto-hinted package
+  * Imported Upstream version 17.0~rc2+dfsg1
+    See: https://kodi.tv/kodi-v17-krypton-release-candidate-1/
+  * Fix positioning of the "from debian" text next to KODI logo
+
+ -- Balint Reczey <balint@balintreczey.hu>  Fri, 06 Jan 2017 18:39:14 +0100
+
+kodi (2:17.0~beta6+dfsg1-1) unstable; urgency=medium
+
+  * Drop new built-in webinterface addon from beta 6.
+    The addon contains many generated files without source. It will
+    be packaged separately.
+  * Imported Upstream version 17.0~beta6+dfsg1
+  * Refresh patches
+  * Revert the webinterface.default addon to old web interface from beta5
+  * Update lintian override about MediaLibrary.js to match new packaging
+  * Revert to using libcec 3.1 until libcec4 becomes available in Debian
+
+ -- Balint Reczey <balint@balintreczey.hu>  Thu, 22 Dec 2016 02:00:46 +0100
+
+kodi (2:17.0~beta5+dfsg1-4) unstable; urgency=medium
+
+  * Stop using different epoch for transitional xbmc packages
+  * Use 2: epoch for kodi packages (Closes: #844541)
+  * Handle original tarballs properly when epoch is present in the package version
+
+ -- Balint Reczey <balint@balintreczey.hu>  Thu, 17 Nov 2016 15:42:51 +0100
+
+kodi (17.0~beta5+dfsg1-3) unstable; urgency=medium
+
+  * Generate addon API versions for architecture-specific builds only
+
+ -- Balint Reczey <balint@balintreczey.hu>  Mon, 14 Nov 2016 16:37:40 +0100
+
+kodi (17.0~beta5+dfsg1-2) unstable; urgency=medium
+
+  [ Balint Reczey ]
+  * Stop providing xbmc-eventclients-j2me.
+    This was a transitional package originally, but Kodi stopped shipping
+    J2ME client. (Closes: #843169)
+  * Transition to depending on fonts-anonymous-pro.
+    Also accept ttf-anonymous-pro instead to support older releases
+  * Generate additional original source tarball names from current version
+  * Use more absolute paths in d/rules
+
+  [ Tobias Grimm ]
+  * Updated tarball versions in `debian/rules extract-components`
+  * Provide virtual packages for addon APIs and install a debhelper addon
+    to enable KODI addon packages to depend on these virtual packages.
+  * Standards-Version: 3.9.8
+
+ -- Balint Reczey <balint@balintreczey.hu>  Mon, 14 Nov 2016 11:32:17 +0100
+
+kodi (17.0~beta5+dfsg1-1) unstable; urgency=medium
+
+  [ Lukas Rechberger ]
+  * Make kodi depend on kodi-data of same version (Closes: #841937)
+
+  [ Balint Reczey ]
+  * Fix Kodi's FFmpeg API usage for allocating and freeing AVFrame
+    (Closes: #831591)
+  * New upstream beta release 17.0 Beta 5
+    See: https://kodi.tv/kodi-v17-krypton-beta-5/
+  * Refresh patches
+  * Run tests only for architecture dependent package builds
+  * Use Anonymous Pro font from ttf-anonymous-pro instead of from texlive-fonts-extra
+    (Closes: #842717)
+
+ -- Balint Reczey <balint@balintreczey.hu>  Wed, 02 Nov 2016 21:53:39 +0100
+
+kodi (17.0~beta4+dfsg1-2) experimental; urgency=medium
+
+  * Generate version of xbmc transitional packages dynamically
+    (Closes: #842141)
+  * Check installed headers only during architecture-specific builds
+
+ -- Balint Reczey <balint@balintreczey.hu>  Wed, 26 Oct 2016 13:37:42 +0200
+
+kodi (17.0~beta4+dfsg1-1) experimental; urgency=medium
+
+  * Ship additional headers referenced from already shipped ones
+  * Ensure all needed development headers are installed
+  * Use patches from libdvdread package
+  * Build-depend on libssh-gcrypt-dev instead of libssh-dev to avoid
+    transitive linking to libssl
+  * Build-depend on libgcrypt-dev instead of libssl-dev
+  * New upstream beta release 17.0 Beta 4
+    See: https://kodi.tv/kodi-v17-krypton-beta-4/
+  * Refresh patches
+  * Stop building with OpenSSL
+
+ -- Balint Reczey <balint@balintreczey.hu>  Mon, 10 Oct 2016 23:00:38 +0200
+
+kodi (17.0~beta3+dfsg1-1) experimental; urgency=medium
+
+  * New upstream beta release 17.0 Beta 3
+    See: https://kodi.tv/kodi-v17-krypton-beta-3/
+  * Refresh patches
+  * Use OpenGL ES and no VAAPI/VDAPU on arm64.
+    This fixes FTBFS on arm64
+  * Enable Google Tests on armel and mips, too.
+    The test results don't make the build fail anyway
+  * Build-depend on valgrind on amd64 and i386.
+    This makes tests use Valgrind on those popular and fast architectures
+  * Fix FTBFS on armel/armhf
+  * Properly set hardening options
+  * Re-enable TestSortUtils test
+  * Fix building tests
+  * Build-depend on default-libmysqlclient-dev to keep Lintian happy
+  * Adjust "from debian" logo placement
+
+ -- Balint Reczey <balint@balintreczey.hu>  Fri, 07 Oct 2016 10:27:11 +0200
+
+kodi (17.0~beta2+dfsg1-1) experimental; urgency=medium
+
+  * New upstream beta release 17.0 Beta 2
+    See: https://kodi.tv/kodi-v17-krypton-beta-2/
+  * Drop build-depenency on libjasper-dev (Closes: 818201)
+  * Adjust packaging to new skin's font requirements.
+    Add dependency on fonts-lato and texlive-fonts-extra, drop
+    dependency on fonts-roboto-hinted, make symlinks to new
+    fonts instead of shipping them.
+  * Add transitional dummy packages from xbmc
+  * Drop obsoleted dependencies and patches
+  * Silence Lintian complaining for missing misc:Depends of transitional
+    packages
+  * Ignore failed clean of components without Lintian noticing
+  * Build-depend on liblcms2-dev for Little CMS support
+
+ -- Balint Reczey <balint@balintreczey.hu>  Sat, 24 Sep 2016 14:57:31 +0200
+
+kodi (17.0~alpha3+dfsg1-1) experimental; urgency=medium
+
+  [ Lukas Rechberger ]
+  * Skip timestamps to make build reproducible (Closes: #825285)
+
+  [ Balint Reczey ]
+  * Build depend on groovy instead of groovy2 (Closes: #824187)
+  * Recommend kodi-visualization-spectrum
+  * New upstream alpha release 17.0 Alpha 2
+    See: https://kodi.tv/kodi-v17-krypton-alpha-2/
+  * Stop excluding paths from orig tarball which are already removed
+  * Refresh patches and changed paths in d/rules
+  * Fix FTBFS due to format string warnings
+  * Disable building DVDCSS
+  * Build-depend on libbluray-dev (>= 0.7.0) to match version required by ./configure
+  * Derive embedded libdvdnav and libdvdread from additional original tarballs
+  * Fix building with Google Test
+  * Ignore failing tests but run them with Valgrind when it is available
+  * Update d/copyright
+  * Add information about multiple orig tarballs
+  * New upstream alpha release 17.0 Alpha 3
+    See: https://kodi.tv/kodi-v17-krypton-alpha-3/
+  * Refresh patches
+  * Really revert patches to embedded dvdnav and dvdread copies in clean target
+  * Drop J2ME client support in sync with upstream
+  * Don't crash on missing version checker addon
+  * Position "from Debian" image better on new skin
+  * Drop symlinks to fonts used in the replaced skin
+
+ -- Balint Reczey <balint@balintreczey.hu>  Fri, 05 Aug 2016 01:23:53 +0200
+
+kodi (16.1+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version 16.1
+    See https://kodi.tv/kodi-16-1-jarvis-mark-xvi
+
+ -- Balint Reczey <balint@balintreczey.hu>  Sun, 24 Apr 2016 15:51:42 +0200
+
+kodi (16.1~rc2+dfsg1-1) unstable; urgency=medium
+
+  * New upstream release candidate 16.1 RC2
+    See: https://kodi.tv/kodi-16-1-jarvis-release-candidate-2/
+  * Fix GetKernelBitness() on s390x to fix FTBFS on that arch
+  * Skip tests on armel and mips to prevent FTBFS
+  * Stop excluding files from upstream tarball which are already removed
+    upstream
+  * Don't modify GetVersionShort(), return package version in GetVersion()
+    instead
+
+ -- Balint Reczey <balint@balintreczey.hu>  Tue, 29 Mar 2016 10:52:16 +0200
+
+kodi (16.0+dfsg1-3) unstable; urgency=medium
+
+  * Fix system info for s390x and arm64 architectures
+  * Skip tests failing on buildds to fix FTBFS on most ports
+  * Skip sorting test failing in the test code on armhf and armel
+
+ -- Balint Reczey <balint@balintreczey.hu>  Fri, 25 Mar 2016 10:49:06 +0100
+
+kodi (16.0+dfsg1-2) unstable; urgency=medium
+
+  * Enable Google Tests at build-time
+  * Fix user agent string and related test
+  * Disable bindnow hardening option because it breaks playing DVDs
+
+ -- Balint Reczey <balint@balintreczey.hu>  Tue, 15 Mar 2016 15:08:54 +0100
+
+kodi (16.0+dfsg1-1) unstable; urgency=medium
+
+  * New upstream version 16.0
+    See https://kodi.tv/kodi-16-0-jarvis-mark-xvi/
+  * Refresh patches
+  * Change build-dependency on libcec-platform-dev to libp8-platform-dev.
+    The library has been renamed
+  * Build-depend on libcec-dev (>= 3.1) which is built with p8-platform
+  * Stop shipping menu file
+  * Override false positive lintian warning about missing JavaScript source
+
+ -- Balint Reczey <balint@balintreczey.hu>  Mon, 22 Feb 2016 23:08:18 +0100
+
+kodi (16.0~rc3+dfsg2-1) experimental; urgency=medium
+
+  * New upstream release candidate 16.0 RC3
+    (Closes: #792299) (CVE-2015-3885)
+    See http://kodi.tv/kodi-16-0-jarvis-release-candidate-3/
+  * Refresh patches
+  * Don't use libcadec, wait for the codec to be included in FFmpeg instead
+  * Drop libhdhomerun-dev build dependency
+  * Add libcrossguid-dev and uuid-dev as build-dependencies
+  * Drop workarounds for screensavers dropped by upstream
+  * Use hinted Roboto fonts adapting to their new location in filesystem
+  * Enable PIE
+  * Make C-Pluff build with PIC only enabling PIE-enabled build to succeed
+  * Update debian/copyright for 16.0 RC3 changes
+
+ -- Balint Reczey <balint@balintreczey.hu>  Sat, 13 Feb 2016 22:53:08 +0100
+
+kodi (15.2+dfsg1-3) unstable; urgency=medium
+
+  * Disable PIE due to build failure on amd64
+
+ -- Balint Reczey <balint@balintreczey.hu>  Mon, 25 Jan 2016 10:35:02 +0100
+
+kodi (15.2+dfsg1-2) unstable; urgency=medium
+
+  * Fix 03-privacy.patch to disable rss feed
+  * Disable debugging by default (Closes: #777041)
+  * Build-depend on fonts-droid-fallback instead of obsoleted fonts-droid
+    (Closes: #804695)
+  * Enable all hardening options during build
+  * Migrate to libpng-dev build-dependency (Closes: #810186)
+
+ -- Balint Reczey <balint@balintreczey.hu>  Sun, 24 Jan 2016 10:55:08 +0100
+
+kodi (15.2+dfsg1-1) unstable; urgency=medium
+
+  [ Balint Reczey ]
+  * Skip handling migration to automatic debug packages when it is not supported by debhelper
+  * Update debian/watch to not skip part of oddly named versions
+  * New upstream release 15.2
+    See http://kodi.tv/kodi-15-2-isengard-final-release/
+
+  [ Andreas Cadhalpun ]
+  * Fix FTBFS with upcoming FFmpeg 2.9 release (Closes: #803831)
+
+ -- Balint Reczey <balint@balintreczey.hu>  Fri, 06 Nov 2015 18:42:22 +0400
+
+kodi (15.2~rc3+dfsg1-1) unstable; urgency=medium
+
+  * New upstream release candidate 15.2 RC3
+    See http://kodi.tv/kodi-15-2-isengard-release-candidate-3
+
+ -- Balint Reczey <balint@balintreczey.hu>  Tue, 06 Oct 2015 12:06:19 +0200
+
+kodi (15.2~rc1+dfsg1-2) unstable; urgency=medium
+
+  * Make Breaks/Replaces relation to xbmc packages versioned.
+    This lets dummy transition-only xbmc packages coexist with kodi.
+    Also remove Provides/Replaces relations remaining from xbmc packaging.
+    (Closes: #799823)
+  * Split architecture-indepedent data to kodi-data.
+    Only the kodi and kodi-standalone binaries are kept in kodi package which is
+    now Architecture:any since it contains the architecture-specific path to
+    kodi.bin. (Closes: #799979)
+
+ -- Balint Reczey <balint@balintreczey.hu>  Sat, 26 Sep 2015 15:13:36 +0200
+
+kodi (15.2~rc1+dfsg1-1) unstable; urgency=medium
+
+  [ Balint Reczey ]
+  * Really fix s390x build
+  * Call ./configure through dh_auto_configure
+  * Convert to package to use multiarch library dirs
+  * Stop shipping kodi-dbg and disable debugging during build.
+    This is a preparation for the automatically generated debug packages
+    and switching to FFmpeg resulted less reported crashes to BTS.
+    Kodi-dbg packages used quite a big space on mirrors and weren't used
+    frequently.
+  * Make kodi-addons-dev Replaces/Breaks: kodi-bin (<= 15.1+dfsg1-3)
+    This is needed to manage moving .cmake files to to kodi-addons-dev.
+  * Migrate from kodi-dbg to ddebs properly.
+    Thanks to Mattia Rizzolo
+  * Make kodi-addons-dev Architecture: any
+  * Simplify debian/rules using exporting DH_OPTIONS
+  * New upstream release candidate 15.2 RC1
+    See http://kodi.tv/kodi-15-2-isengard-release-candidate-2/
+  * Refresh patches
+
+  [ Tobias Grimm ]
+  * Fixed file name of patches/09-use-correct-ftgl.h
+  * Install *.cmake files in kodi-addons-dev
+
+  [ Mattia Rizzolo ]
+  * debian/rules: correct use of `echo`
+
+ -- Balint Reczey <balint@balintreczey.hu>  Mon, 21 Sep 2015 10:38:00 +0200
+
+kodi (15.1+dfsg1-3) unstable; urgency=medium
+
+  * Make configure more verbose when building on architecture not supported
+    by upstream
+  * Fix FTBFS on aarch64 (Closes: #796532)
+  * Don't use NEON on arm/armhf. (Closes: #797204)
+  * Fix build on s390x
+
+ -- Balint Reczey <balint@balintreczey.hu>  Sun, 30 Aug 2015 10:20:07 +0200
+
+kodi (15.1+dfsg1-2) unstable; urgency=medium
+
+  * Don't stop configuration for unknown architectures
+  * Drop unknown ./configure options
+  * Continue configuration for unknown arches even further (Closes: #790635)
+  * Link with libatomic to fix FTBFS on powerpc and some other architectures
+  * Fix broken symlinks to DejaVuSans font files
+
+ -- Balint Reczey <balint@balintreczey.hu>  Tue, 18 Aug 2015 23:51:14 +0200
+
+kodi (15.1+dfsg1-1) unstable; urgency=medium
+
+  * New upstream release 15.0
+    See http://www.kodi.tv/kodi-15-0-isengard-one-release-to-rule-them-all/
+  * Depend on libav.*-dev provided by src:ffmpeg
+  * Recommend udisks2 instead of udisks.
+    Udisks has been removed from unstable but support for udisks2 is not
+    implemented yet.
+  * Ship patch helping Jessie backports
+  * Refresh patches
+  * Eliminate __DATE__ macros from source to make build more reproducible
+  * Build-depend on libsdl2.*-dev instead of libsdl.*-dev
+  * Build-depend on libgif-dev
+  * Drop obsoleted fix of installed header's include paths
+  * Refresh include file list included by kodi-addons-dev
+  * Build depend on libcec (>= 3)
+  * Build-depend on groovy2 instead of groovy
+  * Sort build dependencies
+  * Fix packaging repository URL
+  * Remove removed files from debian/copyright
+  * Fix filenames with spaces in debian/copyright
+  * Ship TexturePacker in kodi-addons-dev in /usr/lib/kodi
+  * Build depend on libcec-platform-dev
+  * Stop using embedded gnulib modules in rsxs screensaver (Closes: #795813)
+  * Add missing copyright paragraphs to d/copyright
+  * Stop marking files as excluded which are removed from upstream tarball
+    already
+  * Bump standards version to 3.9.6
+  * New upstream release 15.1
+    See http://kodi.tv/kodi-15-1-isengard-maintenance-release/
+  * Move TexturePacker to kodi-bin
+  * Stop building TexturePacker statically
+
+ -- Balint Reczey <balint@balintreczey.hu>  Tue, 18 Aug 2015 14:16:59 +0200
+
+kodi (14.2+dfsg1-2) unstable; urgency=medium
+
+  * Recommend udisks (Closes: #787293)
+
+ -- Balint Reczey <balint@balintreczey.hu>  Thu, 04 Jun 2015 09:39:30 +0200
+
+kodi (14.2+dfsg1-1) experimental; urgency=medium
+
+  * Fix addon shared library naming on MIPS
+  * Drop non-machine-readable parts of debian/copyright
+  * Generate machine-readable debian/copyright for all files
+  * Clean up generated debian/copyright
+  * Remove non-free files in d/copyright
+  * Fix debian/watch file
+  * Update debian/copyright with new removals
+  * Drop get-orig-source target from d/rules.
+    Use uscan for generating repacked original tarball.
+  * Imported Upstream version 14.1+dfsg1
+    http://kodi.tv/kodi-14-1-helix-bugfix-release
+  * Copyright updates
+  * Use avformat_flush(), it is now exported by FFmpeg
+  * Stop using files omitted from DFSG-free tarballs
+  * Sort filenames omitted from original tarball
+  * Omit embedded Boost header from original tarball
+  * Download original tarball from GitHub
+  * Imported Upstream version 14.2+dfsg1
+    http://kodi.tv/kodi-14-2-helix-the-final-translation
+
+ -- Balint Reczey <balint@balintreczey.hu>  Sat, 17 Jan 2015 00:30:36 +0100
+
+kodi (14.0+dfsg1-1) experimental; urgency=medium
+
+  * New upstream release 14.0 (CVE-2013-1438)
+    See http://kodi.tv/kodi-14-0-helix-unwinds
+  * Refresh patches
+  * Generate "from Debian" logo from SVG
+
+ -- Balint Reczey <balint@balintreczey.hu>  Fri, 02 Jan 2015 13:19:52 +0100
+
+kodi (14.0~beta1+dfsg1-1) experimental; urgency=medium
+
+  * First packaged Kodi version based on xbmc 2:13.2+dfsg1-4
+    See http://kodi.tv/introducing-kodi-14 for the rationale behind the
+    name change (Closes: #767180)
+  * Use packaged FFmpeg
+  * Stop using internal ffmpeg functions
+  * Build-depend on libcec-dev >= 2.2
+  * Add upstream patches for fixing suspend and adding MIPS support
+
+ -- Balint Reczey <balint@balintreczey.hu>  Sat, 08 Nov 2014 11:14:40 +0100

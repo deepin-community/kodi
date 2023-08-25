@@ -1,0 +1,6 @@
+# Python scripts meant to be run by end-user
+executable-in-usr-lib [usr/lib/python3/dist-packages/kodi/ps3/sixpair.py]
+executable-in-usr-lib [usr/lib/python3/dist-packages/kodi/ps3/sixwatch.py]
+
+# It is Python package dropping files in /usr/bin
+package-contains-no-arch-dependent-files

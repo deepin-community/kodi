@@ -1,0 +1,3 @@
+usr/include/kodi
+usr/share/kodi/cmake/*.cmake
+debian/dh-addon/kodiaddon.pm         usr/share/perl5/Debian/Debhelper/Sequence/

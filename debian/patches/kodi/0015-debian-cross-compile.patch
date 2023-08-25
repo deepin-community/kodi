@@ -1,0 +1,33 @@
+Author: Vasyl Gello <vasek.gello@gmail.com>
+Last-Updated: 2021-10-30
+Forwarded: not-needed
+Subject: Patch native dependencies for cross-compiling
+
+  * Don't build TexturePacker statically - it breaks fakeroot
+
+---
+
+diff --git a/tools/depends/native/TexturePacker/Makefile b/tools/depends/native/TexturePacker/Makefile
+index f50dc879..9ba9da48 100644
+--- a/tools/depends/native/TexturePacker/Makefile
++++ b/tools/depends/native/TexturePacker/Makefile
+@@ -10,15 +10,15 @@ endif
+ 
+ ifeq ($(NATIVEPLATFORM),)
+   PLATFORM = native
+-  EXTRA_CONFIGURE = --enable-static
++#  EXTRA_CONFIGURE = --enable-static
+ else
+   PLATFORM = $(NATIVEPLATFORM)
+   DEPS += ../../Makefile.include
+ endif
+ 
+-ifeq ($(NATIVE_OS), linux)
+-  EXTRA_CONFIGURE = --enable-static
+-endif
++#ifeq ($(NATIVE_OS), linux)
++#  EXTRA_CONFIGURE = --enable-static
++#endif
+ ifeq ($(NATIVE_OS), android)
+   EXTRA_CONFIGURE = --enable-static
+ endif

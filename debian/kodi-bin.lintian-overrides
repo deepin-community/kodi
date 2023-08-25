@@ -1,0 +1,20 @@
+# bindnow breaks wrappers used with libdvdread
+hardening-no-bindnow [usr/lib/*/kodi/kodi.bin]
+hardening-no-bindnow [usr/lib/*/kodi/kodi-xrandr]
+
+# kodi{.bin,-xrandr} are invoked by scripts /usr/bin/kodi*
+executable-in-usr-lib [usr/lib/*/kodi/kodi.bin]
+executable-in-usr-lib [usr/lib/*/kodi/kodi-xrandr]
+
+# Spelling errors in lib/libUPnP that can not be touched by Kodi
+# (https://github.com/xbmc/xbmc/pull/18100#pullrequestreview-436935700)
+spelling-error-in-binary Paramater Parameter [usr/lib/*/kodi/kodi.bin]
+spelling-error-in-binary ment meant [usr/lib/*/kodi/kodi.bin]
+spelling-error-in-binary unexected unexpected [usr/lib/*/kodi/kodi.bin]
+spelling-error-in-binary develope develop [usr/lib/*/kodi/kodi.bin]
+spelling-error-in-binary installe installer [usr/lib/*/kodi/kodi.bin]
+spelling-error-in-binary protocolL protocol [usr/lib/*/kodi/kodi.bin]
+spelling-error-in-binary rovided provided [usr/lib/*/kodi/kodi.bin]
+
+# The library in question really does not depend on external code
+shared-library-lacks-prerequisites [usr/lib/*/kodi/system/libsse4-*.so]

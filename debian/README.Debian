@@ -1,0 +1,24 @@
+Kodi from Debian
+----------------
+
+This package is different from the package you can build from the Kodi source
+you can download from https://kodi.tv (vanilla Kodi, from now on).
+
+This package uses external libraries such as libav distributed in Debian, while
+the XBMC project suggests using the libraries embedded in vanilla Kodi's source.
+
+This difference may cause problems not experienced with vanilla Kodi thus you
+are kindly asked not to report bugs directly to https://kodi.tv, but to
+Debian's Bug Tracking System (BTS):
+
+    https://bugs.debian.org/src:kodi
+
+You can get an overview of the package at Debian Tracker:
+
+    https://tracker.debian.org/kodi
+
+or ask your queestions in Debian Multimedia mailing list by e-mail:
+
+   debian-multimedia@lists.debian.org
+
+ -- Vasyl Gello <vasek.gello@gmail.com>, Fri, 13 Nov 2020 10:00:00 +0300

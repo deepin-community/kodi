@@ -1,0 +1,3 @@
+Tests: gui
+Depends: imagemagick, kodi, kodi-eventclients-kodi-send, xauth, xvfb
+Restrictions: isolation-container, allow-stderr
