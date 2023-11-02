@@ -1,0 +1,5 @@
+# It is Python package
+package-contains-no-arch-dependent-files
+
+# and it can be run by end-user
+executable-in-usr-lib [usr/lib/python3/dist-packages/kodi/zeroconf.py]

@@ -1,0 +1,52 @@
+From: Vasyl Gello <vaek.gello@gmail.com>
+Date: Mon, 16 Nov 2020 20:20:00 +0200
+Subject: Fix C++ example includes
+Forwarded: not-needed
+
+---
+
+--- a/tools/EventClients/examples/c++/example_button1.cpp
++++ b/tools/EventClients/examples/c++/example_button1.cpp
+@@ -1,4 +1,5 @@
+-#include "../../lib/c++/xbmcclient.h"
++#include <kodi/xbmcclient.h>
++
+ #include <stdio.h>
+ #include <string.h>
+ #include <sys/socket.h>
+--- a/tools/EventClients/examples/c++/example_button2.cpp
++++ b/tools/EventClients/examples/c++/example_button2.cpp
+@@ -1,4 +1,5 @@
+-#include "../../lib/c++/xbmcclient.h"
++#include <kodi/xbmcclient.h>
++
+ #include <stdio.h>
+ #include <string.h>
+ #include <sys/socket.h>
+--- a/tools/EventClients/examples/c++/example_log.cpp
++++ b/tools/EventClients/examples/c++/example_log.cpp
+@@ -1,4 +1,5 @@
+-#include "../../lib/c++/xbmcclient.h"
++#include <kodi/xbmcclient.h>
++
+ #include <stdio.h>
+ #include <string.h>
+ #include <sys/socket.h>
+--- a/tools/EventClients/examples/c++/example_mouse.cpp
++++ b/tools/EventClients/examples/c++/example_mouse.cpp
+@@ -1,4 +1,5 @@
+-#include "../../lib/c++/xbmcclient.h"
++#include <kodi/xbmcclient.h>
++
+ #include <stdio.h>
+ #include <string.h>
+ #include <sys/socket.h>
+--- a/tools/EventClients/examples/c++/example_notification.cpp
++++ b/tools/EventClients/examples/c++/example_notification.cpp
+@@ -1,4 +1,5 @@
+-#include "../../lib/c++/xbmcclient.h"
++#include <kodi/xbmcclient.h>
++
+ #include <stdio.h>
+ #include <string.h>
+ #include <sys/socket.h>

@@ -1,0 +1,32 @@
+Kodi used to embed dvdread and dvdnav in its source but the developers switched to
+downloading it which is not an option for Debian source packages. The embedded
+copy of both libraries is retrieved from VideoLAN upstream by watchfile and the
+required Debian patches are applied (debian/patches/libdvd{read,nav}-*.patch).
+
+Kodi replaced the default webinterface in 17.0 beta6 but the new interface contains
+many generated files without providing the source for them. The web interface
+is temporarily reverted to the one included in beta5 to restore GPL compliance.
+
+The web interface is placed in debian patch folder (debian/webinterface-default)
+and is copied in autoconf override because quilt patches can not handle git binary
+diffs.
+
+The cdatetime-std-chrono patch set, available as upstream PR:
+
+    https://github.com/xbmc/xbmc/pull/18727
+
+is a refactored date and time conversion logic in Kodi, that fixes the totally
+broken current implementation for 32-bit architectures (i386, mipsel).
+It should have been added to 19.0 but upstream authors decided to postpond it
+until 20.0 development cycle starts. I decided to include it in Debian release
+nonetheless along with embedded date library (embedded-libdate-tz) from Howard
+Hinnant:
+
+    https://github.com/Howardhinnant/date
+
+It does not make sense to package libdate-tz separately because it is partially
+accepted as upcoming C++20 standard and eventually kodi will move to C++20 in 
+20.0 or 21.0. Upstream author also expects the library to be embedded in project,
+reasoning of "poor CMake support" (see upstream issues).
+
+ -- Vasyl Gello <vasek.gello@gmail.com>, Tue,  3 Jun 2020 10:30:00 +0300

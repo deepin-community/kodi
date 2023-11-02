@@ -1,0 +1,29 @@
+From 7eda44dad7fc5964d934c73612bb3c2a7001c26f Mon Sep 17 00:00:00 2001
+From: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Date: Tue, 3 Mar 2020 23:56:07 +0100
+Subject: [PATCH] dont-use-openssl
+Forwarded: not-needed
+
+---
+ CMakeLists.txt                         | 2 +-
+ xbmc/utils/CryptThreading.cpp          | 2 +-
+ xbmc/utils/CryptThreading.h            | 4 +---
+ xbmc/utils/test/TestCryptThreading.cpp | 2 +-
+ 4 files changed, 4 insertions(+), 6 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index f20909a..400707d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -141,7 +141,7 @@
+                   LibDvd
+                   Libgcrypt
+                   Lzo2
+-                  OpenSSL>=1.1.0
++#                  OpenSSL>=1.1.0
+                   PCRE
+                   RapidJSON
+                   Spdlog
+-- 
+2.20.1
+

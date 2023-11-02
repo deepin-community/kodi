@@ -1,0 +1,58 @@
+From 9f0f2742dee33c33303b6158751a0baab17543f2 Mon Sep 17 00:00:00 2001
+From: Balint Reczey <balint.reczey@canonical.com>
+Date: Sat, 23 Feb 2019 11:06:43 +0100
+Subject: [PATCH] Find and link with Libgcrypt
+Forwarded: not-needed
+
+---
+ CMakeLists.txt                    |  1 +
+ cmake/modules/FindLibgcrypt.cmake | 25 +++++++++++++++++++++++++
+ 2 files changed, 26 insertions(+)
+ create mode 100644 cmake/modules/FindLibgcrypt.cmake
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index f902211..f20909a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -139,6 +139,7 @@
+                   Iconv
+                   KissFFT
+                   LibDvd
++                  Libgcrypt
+                   Lzo2
+                   OpenSSL>=1.1.0
+                   PCRE
+diff --git a/cmake/modules/FindLibgcrypt.cmake b/cmake/modules/FindLibgcrypt.cmake
+new file mode 100644
+index 0000000..9de789a
+--- /dev/null
++++ b/cmake/modules/FindLibgcrypt.cmake
+@@ -0,0 +1,25 @@
++#.rst:
++# FindLibgcrypt
++# -------
++# Finds the Libgcrypt library
++#
++# This will define the following variables::
++#
++# LIBGCRYPT_FOUND - system has Libgcrypt
++# LIBGCRYPT_INCLUDE_DIRS - the Libgcrypt include directory
++# LIBGCRYPT_LIBRARIES - the Libgcrypt libraries
++# LIBGCRYPT_DEFINITIONS - the Libgcrypt compile definitions
++
++find_path(LIBGCRYPT_INCLUDE_DIR gcrypt.h)
++find_library(LIBGCRYPT_LIBRARY NAMES gcrypt)
++
++include(FindPackageHandleStandardArgs)
++find_package_handle_standard_args(Libgcrypt REQUIRED_VARS LIBGCRYPT_LIBRARY LIBGCRYPT_INCLUDE_DIR)
++
++if(LIBGCRYPT_FOUND)
++  set(LIBGCRYPT_LIBRARIES ${LIBGCRYPT_LIBRARY})
++  set(LIBGCRYPT_INCLUDE_DIRS ${LIBGCRYPT_INCLUDE_DIR})
++  set(LIBGCRYPT_DEFINITIONS -DHAVE_GCRYPT=1)
++endif()
++
++mark_as_advanced(LIBGCRYPT_LIBRARY LIBGCRYPT_INCLUDE_DIR)
+-- 
+2.20.1
+

@@ -1,0 +1,11 @@
+usr/lib/firewalld/services/kodi-jsonrpc.xml
+usr/lib/firewalld/services/kodi-http.xml
+usr/lib/firewalld/services/kodi-eventserver.xml
+usr/share/kodi/addons
+usr/share/kodi/media
+usr/share/kodi/privacy-policy.txt
+usr/share/kodi/system
+usr/share/kodi/userdata
+usr/share/icons
+usr/share/kodi/addons/skin.*
+usr/share/xsessions/kodi.desktop

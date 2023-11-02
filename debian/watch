@@ -1,0 +1,75 @@
+version=4
+
+# Alpha bare git branch
+#
+# Since v20, bare git snapshots must follow the tagged release cycle:
+#
+#      pretty=20.0~alphaX+git%cd.%h, \
+#      pretty=20.0~betaX+git%cd.%h, \
+#      pretty=20.0~rcX+git%cd.%h, \
+#
+# where X starts with zero. The 'pretty' attribute must be changed manually
+# after the correspondent tagged release is published.
+#
+#opts="mode=git, \
+#      pgpmode=none, \
+#      pretty=20.0~alpha0+git%cd.%h, \
+#      repack, \
+#      repacksuffix=+dfsg, \
+#      compression=xz, \
+#      uversionmangle=s/\([\.0-9a-zA-Z]\)-.*$/\1/;s/rc/~rc/;s/a/~alpha/;s/b/~beta/;s/RC/~rc/;s/A/~alpha/;s/B/~beta/, \
+#      dversionmangle=auto" \
+#https://github.com/xbmc/xbmc \
+#HEAD \
+#debian
+
+# Release git tags
+# TODO: Change Kodi codename in refs/tags before packaging next Kodi major release
+
+opts="mode=git, \
+      pgpmode=none, \
+      repack, \
+      repacksuffix=+dfsg, \
+      compression=xz, \
+      uversionmangle=s/\([\.0-9a-zA-Z]\)-.*$/\1/;s/rc/~rc/;s/a/~alpha/;s/b/~beta/;s/RC/~rc/;s/A/~alpha/;s/B/~beta/, \
+      dversionmangle=auto" \
+https://github.com/xbmc/xbmc \
+refs/tags/@ANY_VERSION@-Nexus \
+debian
+
+# libdvdread
+
+opts="component=libdvdread-embedded, \
+      mode=git, \
+      pretty=%cd.%h, \
+      repack, \
+      compression=xz, \
+      dversionmangle=auto" \
+https://code.videolan.org/videolan/libdvdread \
+heads/master \
+ignore
+
+# libdvdnav
+
+opts="component=libdvdnav-embedded, \
+      mode=git, \
+      pretty=%cd.%h, \
+      repack, \
+      compression=xz, \
+      dversionmangle=auto" \
+https://code.videolan.org/videolan/libdvdnav \
+heads/master \
+ignore
+
+# repo-resources
+# TODO: Change Kodi codename in heads/ before packaging next Kodi major release
+
+opts="component=repo-resources-embedded, \
+      mode=git, \
+      pretty=%cd.%h, \
+      repack, \
+      compression=xz, \
+      dversionmangle=auto" \
+https://github.com/xbmc/repo-resources \
+heads/nexus \
+ignore

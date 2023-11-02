@@ -1,0 +1,2 @@
+# bindnow breaks wrappers used with libdvdread
+hardening-no-bindnow [usr/bin/*TexturePacker]

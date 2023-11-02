@@ -1,0 +1,14 @@
+# Merged fonts used by Kodi as fallback
+font-in-non-font-package [usr/share/kodi/media/Fonts/arial.ttf]
+font-in-non-font-package [usr/share/kodi/media/Fonts/teletext.ttf]
+font-outside-font-dir [usr/share/kodi/media/Fonts/arial.ttf]
+font-outside-font-dir [usr/share/kodi/media/Fonts/teletext.ttf]
+
+# The majority of files found by this check are either changelog.txt or
+# other text files used by addon code (like versions.txt). The changelog.txt
+# is used by Kodi GUI to display the version history for the installed addons.
+# Despite https://github.com/xbmc/xbmc/pull/9351 merged, big part of community
+# insists on restoring the old behavior and this may happen before 19.0 final
+# release. Please note that this override guards only addons code, so text files
+# and documentation in other parts of Kodi will still be reported if found.
+package-contains-documentation-outside-usr-share-doc [usr/share/kodi/addons/*]

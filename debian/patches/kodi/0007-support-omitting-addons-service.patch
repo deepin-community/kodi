@@ -1,0 +1,27 @@
+From: Jonas Smedegaard <dr@jones.dk>
+Date: Tue, 3 Mar 2020 23:56:07 +0100
+Subject: Support omitting addons repository feed
+Forwarded: not-needed
+Last-Update: 2017-10-03
+
+Upstream official addon repository feed contain non-free addons.
+
+Extending the system at runtime is arguably an anti-feature -
+either for political reasons or due to security risks.
+
+This patch makes it possible to omit the addons repository feed.
+---
+ system/addon-manifest.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/system/addon-manifest.xml
++++ b/system/addon-manifest.xml
+@@ -37,7 +37,7 @@
+   <addon>metadata.local</addon>
+   <addon>metadata.themoviedb.org.python</addon>
+   <addon>metadata.tvshows.themoviedb.org.python</addon>
+-  <addon>repository.xbmc.org</addon>
++  <addon optional="true">repository.xbmc.org</addon>
+   <addon>resource.images.weathericons.default</addon>
+   <addon>resource.language.en_gb</addon>
+   <addon>resource.uisounds.kodi</addon>
